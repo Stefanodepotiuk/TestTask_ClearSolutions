@@ -1,10 +1,7 @@
-package com.example.testtask_clearsolutions.modela;
+package com.example.testtask_clearsolutions.modela.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +12,9 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class User {
     @Id
@@ -43,5 +42,15 @@ public class User {
 
     private String address;
 
+    private LocalDate currentDate = LocalDate.now();
 
+    public User(User user) {
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.mobile = user.getMobile();
+        this.birthDay = user.getBirthDay();
+        this.address = user.getAddress();
+    }
 }
